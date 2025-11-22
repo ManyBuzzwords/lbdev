@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lunarbeam - Build Data-Driven Static Sites. Effortlessly.</title>
+    <title>Lunarbeam - The Universal Data Scenario Engine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #050714;
             color: #E2E8F0;
+        }
+        .font-mono {
+            font-family: 'Fira Code', monospace;
         }
         .gradient-text {
             background: linear-gradient(90deg, #818cf8, #a78bfa, #f472b6);
@@ -35,16 +38,16 @@
             transform: translateY(-4px);
         }
         .code-block {
-            background-color: #1E293B;
+            background-color: #0f172a; /* Darker slate */
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .token.keyword { color: #c792ea; }
-        .token.function { color: #82aaff; }
-        .token.string { color: #c3e88d; }
-        .token.class-name { color: #ffcb6b; }
-        .token.property { color: #82aaff; }
-        .token.punctuation { color: #89ddff; }
-        .token.comment { color: #546e7a; }
+        /* Syntax Highlighting Colors */
+        .token.key { color: #f472b6; } /* Pink for JSON keys */
+        .token.string { color: #a78bfa; } /* Purple for strings */
+        .token.number { color: #818cf8; } /* Indigo for numbers */
+        .token.boolean { color: #fbbf24; } /* Amber for booleans */
+        .token.null { color: #94a3b8; } /* Slate for null */
+        
         .btn-primary {
             background: linear-gradient(90deg, #6366f1, #8b5cf6);
             transition: all 0.3s ease;
@@ -61,14 +64,19 @@
 <body class="antialiased">
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-opacity-50 backdrop-blur-lg border-b border-slate-800/50">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#050714]/80 backdrop-blur-lg border-b border-slate-800/50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tighter">
+            <h1 class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+                <!-- Simple Moon Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet-400"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
                 <span class="gradient-text">Lunarbeam</span>
             </h1>
-            <a href="#waitlist" class="btn-primary text-white font-semibold px-5 py-2 rounded-lg text-sm">
-                Join Waitlist
-            </a>
+            <div class="flex gap-4">
+                <a href="https://github.com/yourrepo" class="hidden md:block text-slate-400 hover:text-white font-medium py-2 text-sm transition">GitHub</a>
+                <a href="#waitlist" class="btn-primary text-white font-semibold px-5 py-2 rounded-lg text-sm">
+                    Get Early Access
+                </a>
+            </div>
         </div>
     </header>
 
@@ -76,20 +84,30 @@
         <!-- Hero Section -->
         <section class="hero-bg pt-32 pb-20 md:pt-48 md:pb-32 text-center">
             <div class="container mx-auto px-6">
+                <div class="inline-block px-3 py-1 mb-6 text-xs font-medium tracking-wider text-violet-300 uppercase bg-violet-500/10 rounded-full border border-violet-500/20">
+                    Public Beta Coming Soon
+                </div>
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-6 leading-tight">
-                    Build <span class="gradient-text">Data-Driven</span> Static Sites.
-                    <br class="hidden md:block"> Effortlessly.
+                    Generate <span class="gradient-text">Scenario-Driven</span><br> 
+                    Mock Data. Effortlessly.
                 </h1>
                 <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10">
-                    Lunarbeam transforms your simple scripts into beautiful, high-performance static websites. Focus on your data and ideas; we'll handle the rest.
+                    Stop using "John Doe". Generate millions of realistic, relationally-correct records for E-commerce, Healthcare, and SaaS demos.
                 </p>
-                <form id="waitlist-form-hero" class="max-w-md mx-auto flex gap-2" onsubmit="handleFormSubmit(event)">
-                    <input type="email" required placeholder="your.email@example.com" class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-violet-500 focus:outline-none transition">
-                    <button type="submit" class="btn-primary text-white font-semibold px-6 py-3 rounded-lg whitespace-nowrap">
-                        Get Early Access
-                    </button>
-                </form>
-                 <p id="form-message-hero" class="mt-4 text-green-400"></p>
+                
+                <div class="flex flex-col md:flex-row gap-4 justify-center mb-12">
+                    <form id="waitlist-form-hero" class="flex gap-2 w-full max-w-md" onsubmit="handleFormSubmit(event)">
+                        <input type="email" required placeholder="work_email@company.com" class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-violet-500 focus:outline-none transition text-white">
+                        <button type="submit" class="btn-primary text-white font-semibold px-6 py-3 rounded-lg whitespace-nowrap">
+                            Join Waitlist
+                        </button>
+                    </form>
+                </div>
+                <p id="form-message-hero" class="mt-2 text-green-400 h-6"></p>
+                
+                <div class="mt-12 text-slate-500 text-sm font-mono">
+                    <span class="opacity-50">$</span> npm install -g datagen-cli
+                </div>
             </div>
         </section>
 
@@ -100,118 +118,126 @@
                     <!-- Feature 1 -->
                     <div class="feature-card p-6 rounded-xl">
                         <div class="mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet-400"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                            <!-- Database Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet-400"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Simplicity First</h3>
-                        <p class="text-slate-400">Write simple, declarative scripts. No need to know HTML, CSS, or complex frameworks. The toolchain is invisible.</p>
+                        <h3 class="text-xl font-bold mb-2">Relational Integrity</h3>
+                        <p class="text-slate-400 text-sm">Generate Users and Orders that actually link. No more broken foreign keys in your demos.</p>
                     </div>
                     <!-- Feature 2 -->
                     <div class="feature-card p-6 rounded-xl">
                         <div class="mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet-400"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            <!-- Network/Nodes Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet-400"><circle cx="12" cy="12" r="3"/><path d="M12 16.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-13.5v4.5m0 13.5v-4.5M7.5 12H3m18 0h-4.5"/></svg>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Declarative UI</h3>
-                        <p class="text-slate-400">Describe your page using a native JavaScript object model. Your code's structure is the website's structure.</p>
+                        <h3 class="text-xl font-bold mb-2">Scenario "Journeys"</h3>
+                        <p class="text-slate-400 text-sm">Don't just generate rows. Generate stories: "A traffic spike on Black Friday" or "3 months of churn."</p>
                     </div>
                     <!-- Feature 3 -->
                     <div class="feature-card p-6 rounded-xl">
                         <div class="mb-4">
+                            <!-- Briefcase/Industry Icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet-400"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Batteries Included</h3>
-                        <p class="text-slate-400">A rich component library for charts, tables, maps, and more, available right out of the box.</p>
+                        <h3 class="text-xl font-bold mb-2">Industry Templates</h3>
+                        <p class="text-slate-400 text-sm">Healthcare (HIPAA), Fintech, E-commerce, and SaaS log streams ready out of the box.</p>
                     </div>
                     <!-- Feature 4 -->
                     <div class="feature-card p-6 rounded-xl">
                         <div class="mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet-400"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+                            <!-- API/Code Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet-400"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Zero Configuration</h3>
-                        <p class="text-slate-400">Go from script to live site with a single command. No complex build steps or configuration files to manage.</p>
+                        <h3 class="text-xl font-bold mb-2">CLI & API Ready</h3>
+                        <p class="text-slate-400 text-sm">Run it locally to generate CSVs, or deploy it as a live mock API for your frontend team.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- How it Works Section -->
-        <section class="py-20">
+        <section class="py-20 bg-[#050714]">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight">From Code to Creation in Seconds</h2>
-                    <p class="text-lg text-slate-400 mt-4 max-w-2xl mx-auto">Write a script using Lunarbeam's components. Run one command. Get a beautiful, static website.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Define Once. Generate Infinite Data.</h2>
+                    <p class="text-lg text-slate-400 mt-4 max-w-2xl mx-auto">Write a simple JSON schema. Get production-ready data instantly.</p>
                 </div>
 
-                <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
-                    <!-- Code Block -->
-                    <div class="relative code-block rounded-xl p-6 text-sm">
-                        <button onclick="copyCode(this)" class="absolute top-4 right-4 bg-slate-700 hover:bg-slate-600 text-slate-300 text-xs font-semibold py-1 px-3 rounded-md transition">Copy</button>
-                        <pre id="code-snippet"><code class="language-js"><span class="token comment">// dashboard.js</span>
-<span class="token keyword">import</span> * <span class="token keyword">as</span> lb <span class="token keyword">from</span> <span class="token string">'lunarbeam'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> salesData <span class="token punctuation">=</span> <span class="token punctuation">{</span>
-  <span class="token property">labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'Jan'</span><span class="token punctuation">,</span> <span class="token string">'Feb'</span><span class="token punctuation">,</span> <span class="token string">'Mar'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token property">values</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">4500</span><span class="token punctuation">,</span> <span class="token number">5200</span><span class="token punctuation">,</span> <span class="token number">4800</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> page <span class="token punctuation">=</span> <span class="token keyword">new</span> <span class="token class-name">lb<span class="token punctuation">.</span>Page</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  <span class="token property">title</span><span class="token punctuation">:</span> <span class="token string">"Sales Dashboard"</span><span class="token punctuation">,</span>
-  <span class="token property">children</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
-    <span class="token keyword">new</span> <span class="token class-name">lb<span class="token punctuation">.</span>Header</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token property">level</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token property">children</span><span class="token punctuation">:</span> <span class="token string">"Q1 Sales Report"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token keyword">new</span> <span class="token class-name">lb<span class="token punctuation">.</span>Chart</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token property">type</span><span class="token punctuation">:</span> <span class="token string">"bar"</span><span class="token punctuation">,</span> <span class="token property">data</span><span class="token punctuation">:</span> salesData <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token keyword">new</span> <span class="token class-name">lb<span class="token punctuation">.</span>Text</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token property">children</span><span class="token punctuation">:</span> <span class="token string">"Sales are trending positively."</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-  <span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// Lunarbeam CLI finds and renders this exported page</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> page<span class="token punctuation">;</span>
-</code></pre>
+                <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-stretch">
+                    
+                    <!-- Left: The Schema (Input) -->
+                    <div class="relative code-block rounded-xl overflow-hidden shadow-2xl flex flex-col h-full">
+                        <div class="bg-slate-800/50 px-4 py-2 flex items-center justify-between border-b border-slate-700/50">
+                            <span class="text-xs font-mono text-slate-400">schema.json</span>
+                            <button onclick="copyCode(this, 'input-code')" class="text-slate-400 hover:text-white text-xs transition">Copy</button>
+                        </div>
+                        <div class="p-6 overflow-x-auto flex-grow">
+<pre id="input-code" class="font-mono text-sm leading-relaxed"><code class="language-json">[
+  {
+    <span class="token key">"fieldName"</span>: <span class="token string">"user_id"</span>,
+    <span class="token key">"recordType"</span>: <span class="token string">"uuid"</span>,
+    <span class="token key">"uniqueRecords"</span>: <span class="token number">1000</span>
+  },
+  {
+    <span class="token key">"fieldName"</span>: <span class="token string">"full_name"</span>,
+    <span class="token key">"recordType"</span>: <span class="token string">"fullName"</span>,
+    <span class="token key">"cleanliness"</span>: <span class="token number">1.0</span>
+  },
+  {
+    <span class="token key">"fieldName"</span>: <span class="token string">"role"</span>,
+    <span class="token key">"recordType"</span>: <span class="token string">"appRole"</span>,
+    <span class="token key">"params"</span>: {
+      <span class="token key">"roles"</span>: [<span class="token string">"Admin"</span>, <span class="token string">"Editor"</span>]
+    }
+  },
+  {
+    <span class="token key">"fieldName"</span>: <span class="token string">"email"</span>,
+    <span class="token key">"recordType"</span>: <span class="token string">"email"</span>,
+    <span class="token key">"params"</span>: {
+      <span class="token key">"format"</span>: <span class="token string">"${full_name}@acme.com"</span>
+    }
+  }
+]</code></pre>
+                        </div>
                     </div>
 
-                    <!-- Output Preview -->
-                    <div class="output-preview rounded-xl p-4 mt-8 lg:mt-0">
-                        <div class="flex items-center gap-1.5 mb-3 px-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <div class="bg-[#050714] rounded-lg p-6">
-                            <h1 class="text-3xl font-bold text-white mb-6">Q1 Sales Report</h1>
-                            <!-- SVG Chart Replacement -->
-                            <div class="w-full h-auto">
-                                <svg viewBox="0 0 300 150" class="w-full h-full">
-                                    <!-- Grid lines -->
-                                    <line x1="30" y1="20" x2="290" y2="20" stroke="#334155" stroke-width="0.5"/>
-                                    <line x1="30" y1="50" x2="290" y2="50" stroke="#334155" stroke-width="0.5"/>
-                                    <line x1="30" y1="80" x2="290" y2="80" stroke="#334155" stroke-width="0.5"/>
-                                    <line x1="30" y1="110" x2="290" y2="110" stroke="#334155" stroke-width="0.5"/>
-                                    <line x1="30" y1="140" x2="290" y2="140" stroke="#475569" stroke-width="1"/>
-                                    
-                                    <!-- Y-axis labels -->
-                                    <text x="25" y="25" font-size="8" fill="#94a3b8" text-anchor="end">6k</text>
-                                    <text x="25" y="85" font-size="8" fill="#94a3b8" text-anchor="end">3k</text>
-                                    <text x="25" y="145" font-size="8" fill="#94a3b8" text-anchor="end">0</text>
-
-                                    <!-- Bars -->
-                                    <rect x="60" y="37" width="40" height="103" fill="url(#barGradient)" rx="2"/>
-                                    <rect x="130" y="20" width="40" height="120" fill="url(#barGradient)" rx="2"/>
-                                    <rect x="200" y="10" width="40" height="130" fill="url(#barGradient)" rx="2"/>
-
-                                    <!-- X-axis labels -->
-                                    <text x="80" y="150" font-size="10" fill="#cbd5e1" text-anchor="middle">Jan</text>
-                                    <text x="150" y="150" font-size="10" fill="#cbd5e1" text-anchor="middle">Feb</text>
-                                    <text x="220" y="150" font-size="10" fill="#cbd5e1" text-anchor="middle">Mar</text>
-
-                                    <defs>
-                                        <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stop-color="#a78bfa" />
-                                            <stop offset="100%" stop-color="#818cf8" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
+                    <!-- Right: The Output (Result) -->
+                    <div class="relative output-preview rounded-xl overflow-hidden shadow-2xl mt-8 lg:mt-0 flex flex-col h-full">
+                        <div class="bg-slate-800/50 px-4 py-2 flex items-center justify-between border-b border-slate-700/50">
+                            <div class="flex items-center gap-2">
+                                <div class="flex gap-1.5">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                                </div>
+                                <span class="ml-2 text-xs font-mono text-slate-400">output.json</span>
                             </div>
-                            <p class="text-slate-400 mt-6">Sales are trending positively.</p>
+                            <span class="text-xs text-violet-400 font-mono">Generated in 12ms</span>
+                        </div>
+                        <div class="p-6 overflow-x-auto bg-[#0b1021] flex-grow">
+<pre class="font-mono text-sm leading-relaxed"><code class="language-json">[
+  {
+    <span class="token key">"user_id"</span>: <span class="token string">"a4b1c2d3-e4f5..."</span>,
+    <span class="token key">"full_name"</span>: <span class="token string">"Alice Chen"</span>,
+    <span class="token key">"role"</span>: <span class="token string">"Admin"</span>,
+    <span class="token key">"email"</span>: <span class="token string">"alice.chen@acme.com"</span>
+  },
+  {
+    <span class="token key">"user_id"</span>: <span class="token string">"f8d9c0a1-b2e3..."</span>,
+    <span class="token key">"full_name"</span>: <span class="token string">"Bob Smith"</span>,
+    <span class="token key">"role"</span>: <span class="token string">"Editor"</span>,
+    <span class="token key">"email"</span>: <span class="token string">"bob.smith@acme.com"</span>
+  },
+  {
+    <span class="token key">"user_id"</span>: <span class="token string">"c3d4e5f6-a7b8..."</span>,
+    <span class="token key">"full_name"</span>: <span class="token string">"Charlie Davis"</span>,
+    <span class="token key">"role"</span>: <span class="token string">"Editor"</span>,
+    <span class="token key">"email"</span>: <span class="token string">"charlie.davis@acme.com"</span>
+  }
+]</code></pre>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -219,25 +245,30 @@
         <!-- Final CTA Section -->
         <section id="waitlist" class="py-20">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Ready to Build Faster?</h2>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Ready to Fix Your Demos?</h2>
                 <p class="text-lg text-slate-400 mt-4 max-w-2xl mx-auto mb-10">
-                    Join the waitlist to get early access to Lunarbeam and be the first to know when we launch.
+                    Join the waitlist to get early access to the Lunarbeam Cloud Platform and standard library.
                 </p>
                 <form id="waitlist-form-footer" class="max-w-md mx-auto flex gap-2" onsubmit="handleFormSubmit(event)">
-                    <input type="email" required placeholder="your.email@example.com" class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-violet-500 focus:outline-none transition">
+                    <input type="email" required placeholder="your.email@example.com" class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 focus:ring-2 focus:ring-violet-500 focus:outline-none transition text-white">
                     <button type="submit" class="btn-primary text-white font-semibold px-6 py-3 rounded-lg whitespace-nowrap">
                         Join Waitlist
                     </button>
                 </form>
-                <p id="form-message-footer" class="mt-4 text-green-400"></p>
+                <p id="form-message-footer" class="mt-4 text-green-400 h-6"></p>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800/50">
-        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
+    <footer class="border-t border-slate-800/50 bg-[#050714]">
+        <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
             <p>&copy; 2025 Lunarbeam. All rights reserved.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-violet-400 transition">Twitter</a>
+                <a href="#" class="hover:text-violet-400 transition">GitHub</a>
+                <a href="#" class="hover:text-violet-400 transition">Docs</a>
+            </div>
         </div>
     </footer>
 
@@ -249,7 +280,7 @@
             const messageId = formId.includes('hero') ? 'form-message-hero' : 'form-message-footer';
             const messageEl = document.getElementById(messageId);
             
-            messageEl.textContent = 'Thank you for signing up! We\'ll be in touch.';
+            messageEl.textContent = 'You are on the list! Watch your inbox.';
             
             // Clear message after 5 seconds
             setTimeout(() => {
@@ -260,25 +291,17 @@
         }
 
         // Copy code to clipboard
-        function copyCode(button) {
-            const codeSnippet = document.getElementById('code-snippet');
+        function copyCode(button, elementId) {
+            const codeSnippet = document.getElementById(elementId);
             const textToCopy = codeSnippet.innerText;
 
-            // Using a temporary textarea element to copy
-            const textArea = document.createElement('textarea');
-            textArea.value = textToCopy;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = button.innerText;
                 button.innerText = 'Copied!';
                 setTimeout(() => {
-                    button.innerText = 'Copy';
+                    button.innerText = originalText;
                 }, 2000);
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
-            }
-            document.body.removeChild(textArea);
+            });
         }
     </script>
 
